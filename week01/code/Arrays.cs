@@ -13,7 +13,18 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // Process:
+        // 1. Define an array of type double and size equal to length
+        // 2. Loop from 1 to length using i as the index
+        // 3. For each iteration of i, compute (i * number) and store it in the aforementioned array at position i-1
+        // 4. Return the resulting array after loop completes
+
+        double[] result = new double[length];
+        for (int i = 1; i <= length; i++)
+        {
+            result[i - 1] = number * i;
+        }
+        return result;
     }
 
     /// <summary>
@@ -29,5 +40,23 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Process:
+        // 1. If the remainder of amount / data.Count equals zero exit function, no need to rotate
+        // 2. Loop from 0 to remainder using i as the index
+        // 3. For each iteration of i:
+        //  a. Get the last element of data list
+        //  b. Insert it at the beginning of data list
+        //  c. Remove last element from data list
+
+        if (amount % data.Count == 0) return;
+
+        // Take elements from the end and move to the front
+        for (int i = 0; i < amount % data.Count; i++)
+        {
+            int lastElement = data[data.Count - 1];
+            data.RemoveAt(data.Count - 1);
+            data.Insert(0, lastElement);
+        }
     }
 }
