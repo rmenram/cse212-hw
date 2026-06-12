@@ -12,6 +12,11 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
+        // Base Case: prevent duplicates if value exists already
+        if (value == Data)
+        {
+            return;
+        }
 
         if (value < Data)
         {
@@ -34,12 +39,55 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
+        // Base Case: return true if value exists in node
+        if (value == Data)
+        {
+            return true;
+        }
+        // Check left when value is smaller
+        if (value < Data)
+        {
+            if (Left != null)
+            {
+                return Left.Contains(value);
+            }
+        }
+        // Check right when value is larger
+        else
+        {
+            if (Right != null)
+            {
+                return Right.Contains(value);
+            }
+        }
+        // Return false when value not found
         return false;
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        // Setting heights to zero covers when left or right do not exist
+        int leftHeight = 0;
+        int rightHeight = 0;
+        // Get the height of left when it exists
+        if (Left != null)
+        {
+            leftHeight = Left.GetHeight();
+        }
+        // Get the height of right when it exists
+        if (Right != null)
+        {
+            rightHeight = Right.GetHeight();
+        }
+        // Return the highest height plus 1 (accounting for the root node)
+        if (leftHeight > rightHeight)
+        {
+            return leftHeight + 1;
+        }
+        else
+        {
+            return rightHeight + 1;
+        }
     }
 }
